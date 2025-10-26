@@ -10,10 +10,27 @@ namespace K1U2___Kontaktkatalogen.Core
     {
         public List<Contact> Contacts = new List<Contact>();
         public HashSet<String> Emails = new HashSet<String>();
-        public HashSet<int> Ids = new HashSet<int>();
+        public HashSet<String> Ids = new HashSet<String>();
 
+
+        public void AddContact(Contact contact)
+        {
+            Contacts.Add(contact);
+            Emails.Add(contact.Email);
+            Ids.Add(contact.Id);
+        }
         public bool TryAddingContact(Contact contact) => (!Emails.Contains(contact.Email) && !Ids.Contains(contact.Id));
-       
+        public string MakeUniqueID()
+        {
+            int id;
+            Random random = new Random();
+            do
+            {
+                id = random.Next(10000);
+            } while (Ids.Contains(id.ToString("D4")));
+
+            return id.ToString("D4");
+        }
     }
 }
 

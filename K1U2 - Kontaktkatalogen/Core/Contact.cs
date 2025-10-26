@@ -8,12 +8,12 @@ namespace K1U2___Kontaktkatalogen.Core
 {
     internal class Contact
     {
-        public int Id { get; set; }
+        public String Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public List<string> Tags { get; set; }
 
-        public Contact(int id, string name, string email, List<string> tags)
+        public Contact(String id, string name, string email, List<string> tags)
         {
             Id = id;
             Name = name;

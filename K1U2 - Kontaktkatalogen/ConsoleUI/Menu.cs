@@ -13,12 +13,16 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
         private ContactCatalog _contactCatalog = new ContactCatalog();
         public Menu()
         {
-            string input = MainMenu();
+            while (true)
+            {
+                string input = MainMenu();
 
-            switch (input) {
-                case "1":
-                    ContactAdder contactAdder = new ContactAdder(_contactCatalog);
-                    break;
+                switch (input)
+                {
+                    case "1":
+                        ContactAdder contactAdder = new ContactAdder(_contactCatalog);
+                        break;
+                }
             }
         }
 
