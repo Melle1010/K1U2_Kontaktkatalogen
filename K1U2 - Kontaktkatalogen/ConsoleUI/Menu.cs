@@ -31,6 +31,10 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                         if (_contactCatalog.Contacts.Count == 0) Console.WriteLine("No Contacts...");
                         Console.ReadLine();
                         break;
+                    case "0":
+                        Console.Clear();
+                        Console.WriteLine("Goodbye!");
+                        return;
                 }
             }
         }
