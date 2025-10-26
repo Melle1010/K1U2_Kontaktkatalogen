@@ -1,10 +1,10 @@
-﻿namespace K1U2___Kontaktkatalogen
+﻿namespace K1U2___Kontaktkatalogen.ConsoleUI
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Menu menu = new Menu();
         }
     }
 }
