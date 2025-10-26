@@ -22,6 +22,15 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                     case "1":
                         ContactAdder contactAdder = new ContactAdder(_contactCatalog);
                         break;
+                    case "2":
+                        Console.Clear();
+                        Console.WriteLine("--- Contact List ---");
+                        foreach (var contact in _contactCatalog.Contacts) {
+                            Console.WriteLine("* "+contact);
+                        }
+                        if (_contactCatalog.Contacts.Count == 0) Console.WriteLine("No Contacts...");
+                        Console.ReadLine();
+                        break;
                 }
             }
         }
