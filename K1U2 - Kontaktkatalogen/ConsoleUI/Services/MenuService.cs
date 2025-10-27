@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace K1U2___Kontaktkatalogen.ConsoleUI
+namespace K1U2___Kontaktkatalogen.ConsoleUI.Services
 {
     internal class MenuService
     {
@@ -15,7 +15,7 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
         /// <param name="min">The inclusive minimum allowed value. If null, no minimum is enforced.</param>
         /// <param name="max">The inclusive maximum allowed value. If null, no maximum is enforced.</param>
         /// <returns>The valid input string that represents a number in the specified range.</returns>
-        public string HandleInput(int? min = null, int? max = null)
+        public static string HandleInput(int? min = null, int? max = null)
         {
             string input;
             int number; // STORES PARSED VALUE
@@ -42,17 +42,17 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                 if (!int.TryParse(input, out number))
                 {
                     Console.WriteLine("\nERROR: That is not a valid whole number. Please try again.\n");
-                    continue; // Go back to the top of the loop
+                    continue;
                 }
                 if (min.HasValue && number < min.Value)
                 {
                     Console.WriteLine($"\nERROR: The number must be at least {min.Value}. Please try again.\n");
-                    continue; // Go back to the top of the loop
+                    continue;
                 }
                 if (max.HasValue && number > max.Value)
                 {
                     Console.WriteLine($"\nERROR: The number must be no more than {max.Value}. Please try again.\n");
-                    continue; // Go back to the top of the loop
+                    continue;
                 }
                 break;
             }

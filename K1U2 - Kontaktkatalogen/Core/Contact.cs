@@ -23,11 +23,8 @@ namespace K1U2___Kontaktkatalogen.Core
 
         public override string ToString()
         {
-            string tags = "";
-            foreach (string tag in Tags) { 
-                tags += tag+", ";
-            }
-            return $"({Id}) {Name}, {Email}, Tags: {tags} ";
+            string tagsString = string.Join(", ", Tags);
+            return $"({Id}) {Name}, {Email}, Tags: {tagsString}";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using K1U2___Kontaktkatalogen.Core;
+﻿using K1U2___Kontaktkatalogen.ConsoleUI.Services;
+using K1U2___Kontaktkatalogen.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,12 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
 {
     internal class Menu
     {
-        private MenuService _menuService = new MenuService();
-        private ContactCatalog _contactCatalog = new ContactCatalog();
-        public Menu()
+        private readonly ContactCatalog _contactCatalog;
+        public Menu(ContactCatalog contactCatalog)
+        {
+            _contactCatalog = contactCatalog;
+        }
+        public void Run()
         {
             while (true)
             {
@@ -21,15 +25,21 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                 {
                     case "1":
                         ContactAdder contactAdder = new ContactAdder(_contactCatalog);
+                        contactAdder.Run();
                         break;
                     case "2":
                         Console.Clear();
                         Console.WriteLine("--- Contact List ---");
-                        foreach (var contact in _contactCatalog.Contacts) {
-                            Console.WriteLine("* "+contact);
+                        foreach (var contact in _contactCatalog.Contacts)
+                        {
+                            Console.WriteLine("* " + contact);
                         }
                         if (_contactCatalog.Contacts.Count == 0) Console.WriteLine("No Contacts...");
                         Console.ReadLine();
+                        break;
+                    case "3":
+                        ContactSearcher contactSearcher = new ContactSearcher(_contactCatalog);
+                        contactSearcher.Run();
                         break;
                     case "0":
                         Console.Clear();
@@ -38,7 +48,6 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                 }
             }
         }
-
         public string MainMenu()
         {
             Console.Clear();
@@ -51,7 +60,7 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
             Console.WriteLine("0) Exit");
             Console.WriteLine("- - - - - - - - - - - -");
             Console.Write("> ");
-            return _menuService.HandleInput(0, 5);
+            return MenuService.HandleInput(0, 5);
         }
     }
 }
