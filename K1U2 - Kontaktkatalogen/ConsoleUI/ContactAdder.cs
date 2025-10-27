@@ -4,29 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using K1U2___Kontaktkatalogen.Core.Validators;
 
 namespace K1U2___Kontaktkatalogen.ConsoleUI
 {
     internal class ContactAdder
     {
         public ContactAdder(ContactCatalog cc) {
-            string input1, input2, input3;
+            string nameInput, emailInput, tagsInput;
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("--- Add Contact ---");
                 Console.Write("\nName: ");
-                input1 = Console.ReadLine();
+                nameInput = Console.ReadLine();
                 Console.Write("\nEmail: ");
-                input2 = Console.ReadLine();
+                emailInput = Console.ReadLine();
                 Console.Write("\nTags (separated by comma): ");
-                input3 = Console.ReadLine();
+                tagsInput = Console.ReadLine();
 
-                List<string> tags = input3.Split(',').Select(tag => tag.Trim()).ToList();
+                List<string> tags = tagsInput.Split(',').Select(tag => tag.Trim()).ToList();
 
-                Contact contact = new Contact(cc.MakeUniqueID(), input1, input2, tags);
+                Contact contact = new Contact(cc.MakeUniqueID(), nameInput, emailInput, tags);
 
-                if (cc.TryAddingContact(contact)) {
+                if (cc.TryAddingContact(contact) && ValidationService.IsValidEmail(emailInput)) {
                     Console.WriteLine("\nYou successfully added a new contact! ");
                     cc.AddContact(contact);
                     Thread.Sleep(1000);
