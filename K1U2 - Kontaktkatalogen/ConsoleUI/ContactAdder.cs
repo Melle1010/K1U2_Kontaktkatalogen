@@ -30,11 +30,9 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                     Console.Write("\nTags (separated by comma): ");
                     tagsInput = Console.ReadLine();
 
-                    List<string> tags = tagsInput.Split(',').Select(tag => tag.Trim()).ToList();
 
-                    Contact contact = new Contact(_cc.MakeUniqueID(), nameInput, emailInput, tags);
 
-                    if (_cc.AddContact(contact)) {
+                    if (_cc.AddContact(new Contact(_cc.MakeUniqueID(), nameInput, emailInput, tagsInput))) {
                         Console.WriteLine("\nYou successfully added a new contact! ");
                         Console.ReadKey(true);
                         break;

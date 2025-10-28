@@ -22,7 +22,7 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
             Console.Write("\nSearch by name: ");
             string inputName = Console.ReadLine();
             Console.WriteLine();
-            List<Contact> searchedContacts = _cc.Contacts.Where(c => c.Name.ToUpper().Contains(inputName.ToUpper())).ToList();
+            List<Contact> searchedContacts = _cc.ById.Values.Where(c => c.Name.ToUpper().Contains(inputName.ToUpper())).ToList();
             if (searchedContacts.Count == 0) Console.WriteLine("No contacts found...");
             foreach (Contact contact in searchedContacts) {
                 Console.WriteLine("* "+contact);

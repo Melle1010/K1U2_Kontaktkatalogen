@@ -10,9 +10,16 @@ namespace K1U2___Kontaktkatalogen
         {
             ContactCatalog cc = new ContactCatalog();
 
-            //Gives the contact catalogue some test data
-            ContactCatalogueTestData cctd = new ContactCatalogueTestData();
-            cctd.Run(cc);
+            // Asks if you want to load test data or not
+            Console.Write("Do you want test data? y/n: ");
+            string? answer = Console.ReadLine();
+
+            if (answer?.ToLower() == "y")
+            {
+                ContactCatalogueTestData cctd = new ContactCatalogueTestData(cc);
+                cctd.Run();
+            }
+
 
             Menu menu = new Menu(cc);
             menu.Run();

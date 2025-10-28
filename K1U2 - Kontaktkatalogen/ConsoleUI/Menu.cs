@@ -33,7 +33,7 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                         Console.WriteLine("--- Contact List ---");
                         foreach (var kvp in _contactCatalogue.ById)
                         {
-                            Console.WriteLine("* " + kvp.Value);
+                            Console.WriteLine($"* ({kvp.Key}) {kvp.Value}");
                         }
                         if (_contactCatalogue.ById.Count == 0) Console.WriteLine("No Contacts...");
                         Console.ReadKey(true);
