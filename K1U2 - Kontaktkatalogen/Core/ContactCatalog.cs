@@ -1,4 +1,5 @@
-﻿using System;
+﻿using K1U2___Kontaktkatalogen.Core.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,37 @@ namespace K1U2___Kontaktkatalogen.Core
 {
     internal class ContactCatalog
     {
-        public List<Contact> Contacts = new List<Contact>();
-        public HashSet<String> Emails = new HashSet<String>();
-        public HashSet<String> Ids = new HashSet<String>();
+        public Dictionary<string, Contact> ById = new Dictionary<string, Contact>();
+        private HashSet<string> Emails = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-
-        public void AddContact(Contact contact)
+        public bool AddContact(Contact c)
         {
-            Contacts.Add(contact);
-            Emails.Add(contact.Email);
-            Ids.Add(contact.Id);
+            try
+            {
+                if (!IsValidEmail(c.Email)) throw new InvalidEmailException(c.Email);
+                if (!Emails.Add(c.Email)) throw new DuplicateEmailException(c.Email);
+            }
+            catch (InvalidEmailException ex)
+            {
+                // CATCH block for a specific validation error
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"CAUGHT VALIDATION ERROR: {ex.Message}");
+                Console.ResetColor();
+                Console.ReadKey(true);
+                return false;
+            }
+            catch (DuplicateEmailException ex)
+            {
+                // CATCH block for a specific data integrity error
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"CAUGHT DUPLICATE ERROR: {ex.Message}");
+                Console.ResetColor();
+                Console.ReadKey(true);
+                return false;
+            }
+            ById.Add(c.Id, c);
+            return true;
         }
-        public bool TryAddingContact(Contact contact) => (!Emails.Contains(contact.Email) && !Ids.Contains(contact.Id));
         public string MakeUniqueID()
         {
             int id;
@@ -27,9 +47,17 @@ namespace K1U2___Kontaktkatalogen.Core
             do
             {
                 id = random.Next(10000);
-            } while (Ids.Contains(id.ToString("D4")));
-
+            } while (ById.ContainsKey(id.ToString("D4")));
             return id.ToString("D4");
+        }
+        public static bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch { return false; }
         }
     }
 }

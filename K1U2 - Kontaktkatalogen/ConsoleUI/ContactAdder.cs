@@ -34,9 +34,8 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
 
                     Contact contact = new Contact(_cc.MakeUniqueID(), nameInput, emailInput, tags);
 
-                    if (_cc.TryAddingContact(contact) && ValidationService.IsValidEmail(emailInput)) {
+                    if (_cc.AddContact(contact)) {
                         Console.WriteLine("\nYou successfully added a new contact! ");
-                        _cc.AddContact(contact);
                         Console.ReadKey(true);
                         break;
                     }

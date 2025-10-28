@@ -8,23 +8,23 @@ namespace K1U2___Kontaktkatalogen.Core
 {
     internal class Contact
     {
-        public String Id { get; set; }
+        public string Id;
         public string Name { get; set; }
         public string Email { get; set; }
         public List<string> Tags { get; set; }
 
-        public Contact(String id, string name, string email, List<string> tags)
+        public Contact(string id, string name, string email, string tags)
         {
-            Id = id;
             Name = name;
             Email = email;
-            Tags = tags;
+            Id = id;
+            Tags = tags.Split(",").Select(t => t.Trim()).ToList();
+
         }
 
         public override string ToString()
         {
-            string tagsString = string.Join(", ", Tags);
-            return $"({Id}) {Name}, {Email}, Tags: {tagsString}";
+            return $"{Name} | {Email} | {String.Join(", ", Tags)}";
         }
     }
 }

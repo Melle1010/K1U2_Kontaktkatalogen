@@ -10,10 +10,11 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
 {
     internal class Menu
     {
-        private readonly ContactCatalog _contactCatalog;
-        public Menu(ContactCatalog contactCatalog)
+        private readonly ContactCatalog _contactCatalogue;
+
+        public Menu(ContactCatalog contactCatalogue)
         {
-            _contactCatalog = contactCatalog;
+            _contactCatalogue = contactCatalogue;
         }
         public void Run()
         {
@@ -24,21 +25,21 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                 switch (input)
                 {
                     case "1":
-                        ContactAdder contactAdder = new ContactAdder(_contactCatalog);
+                        ContactAdder contactAdder = new ContactAdder(_contactCatalogue);
                         contactAdder.Run();
                         break;
                     case "2":
                         Console.Clear();
                         Console.WriteLine("--- Contact List ---");
-                        foreach (var contact in _contactCatalog.Contacts)
+                        foreach (var kvp in _contactCatalogue.ById)
                         {
-                            Console.WriteLine("* " + contact);
+                            Console.WriteLine("* " + kvp.Value);
                         }
-                        if (_contactCatalog.Contacts.Count == 0) Console.WriteLine("No Contacts...");
-                        Console.ReadLine();
+                        if (_contactCatalogue.ById.Count == 0) Console.WriteLine("No Contacts...");
+                        Console.ReadKey(true);
                         break;
                     case "3":
-                        ContactSearcher contactSearcher = new ContactSearcher(_contactCatalog);
+                        ContactSearcher contactSearcher = new ContactSearcher(_contactCatalogue);
                         contactSearcher.Run();
                         break;
                     case "0":
