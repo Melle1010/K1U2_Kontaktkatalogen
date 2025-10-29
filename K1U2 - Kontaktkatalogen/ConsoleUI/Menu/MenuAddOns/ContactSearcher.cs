@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using K1U2___Kontaktkatalogen.Core;
 
-namespace K1U2___Kontaktkatalogen.ConsoleUI
+namespace K1U2___Kontaktkatalogen.ConsoleUI.Menu.MenuAddOns
 {
     internal class ContactSearcher
     {

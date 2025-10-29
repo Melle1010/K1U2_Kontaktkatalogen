@@ -1,4 +1,5 @@
-﻿using K1U2___Kontaktkatalogen.ConsoleUI.Services;
+﻿using K1U2___Kontaktkatalogen.ConsoleUI.Menu.MenuAddOns;
+using K1U2___Kontaktkatalogen.ConsoleUI.Services;
 using K1U2___Kontaktkatalogen.Core;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace K1U2___Kontaktkatalogen.ConsoleUI
+namespace K1U2___Kontaktkatalogen.ConsoleUI.Menu
 {
     internal class Menu
     {
@@ -41,6 +42,10 @@ namespace K1U2___Kontaktkatalogen.ConsoleUI
                     case "3":
                         ContactSearcher contactSearcher = new ContactSearcher(_contactCatalogue);
                         contactSearcher.Run();
+                        break;
+                    case "4":
+                        ContactTagFilter contactTagFilter = new ContactTagFilter(_contactCatalogue);
+                        contactTagFilter.Run();
                         break;
                     case "0":
                         Console.Clear();

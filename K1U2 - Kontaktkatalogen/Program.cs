@@ -1,4 +1,4 @@
-﻿using K1U2___Kontaktkatalogen.ConsoleUI;
+﻿using K1U2___Kontaktkatalogen.ConsoleUI.Menu;
 using K1U2___Kontaktkatalogen.Core;
 using K1U2___Kontaktkatalogen.Temp;
 
